@@ -16,13 +16,15 @@
             line-height: 1.6;
             background-color: #f0f0f0;
             color: #333;
+            overflow-x: hidden;
         }
 
         header {
             background: rgba(0, 0, 0, 0.7);
             color: #fff;
-            padding: 10px 20px;
+            padding: 20px 20px;
             text-align: center;
+            margin-top: 70px; /* Prevents overlap with the navbar on desktop */
         }
 
         header h1 {
@@ -35,10 +37,16 @@
         }
 
         nav {
-            display: flex;
-            justify-content: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
             background: #006400;
             padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
         nav a {
@@ -60,11 +68,12 @@
             align-items: center;
             text-align: center;
             padding: 50px 20px;
-            background-image: url('farm.jpg'); /* Replace with your image */
+            background-image: url('farms.jpg'); /* Replace with your image */
             background-size: cover;
             background-position: center;
             color: white;
             height: 300px;
+            margin-top: 20px; /* Space adjustment below navbar for desktop */
         }
 
         .hero h2 {
@@ -118,32 +127,133 @@
             color: #555;
         }
 
+        .team {
+            padding: 30px 20px;
+            margin: 20px auto;
+            background: rgba(255, 255, 255, 0.9);
+            width: 90%;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .team h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .team-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .team-member {
+            flex: 0 1 200px; /* Ensures equal width for all boxes */
+            padding: 20px;
+            background: #f7f7f7;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s, background-color 0.3s;
+            cursor: pointer;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            background-color: #e0ffe0;
+        }
+
+        .team-member h3 {
+            font-size: 1.2em;
+            color: #006400;
+            font-weight: bold;
+        }
+
         footer {
             background: #333;
             color: #fff;
             text-align: center;
-            padding: 10px 0;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .contact-section {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            margin: 20px auto;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-section p {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
+        .contact-section a {
+            color: #006400;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        @media screen and (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                padding: 5px 0;
+            }
+
+            nav a {
+                margin: 5px 0;
+            }
+
+            .hero {
+                padding: 30px 10px;
+                height: auto;
+                margin-top: 100px; /* Adjusted for mobile view */
+            }
+
+            header {
+                margin-top: 100px; /* Adjusted for mobile view */
+            }
+
+            .team-container {
+                flex-direction: column;
+            }
+
+            .team-member {
+                width: 90%; /* Ensures full width on smaller screens */
+                margin: 10px auto;
+            }
         }
     </style>
 </head>
 <body>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#services">Services</a>
+        <a href="#team">Our Team</a>
+        <a href="#">Login</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
     <header>
         <h1>Farming For A Better Future</h1>
         <p>Innovative Solutions For a Sustainable Agricultural World</p>
     </header>
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">About Us</a>
-        <a href="#">Services</a>
-        <a href="#">Contact</a>
-    </nav>
 
-    <section class="hero">
+    <section class="hero" id="about">
         <h2>Welcome to Our Platform</h2>
         <p>Empowering farmers with advanced tools and insights for a brighter tomorrow. Join us in transforming agriculture and securing a sustainable future for everyone.</p>
     </section>
 
-    <section class="services">
+    <section class="services" id="services">
         <div class="service">
             <h3>🧪 Soil Details Input</h3>
             <p>Provide soil information for accurate analysis.</p>
@@ -166,8 +276,33 @@
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2024 Farming For A Better Future. All rights reserved.</p>
+    <section class="team" id="team">
+        <h2>Our Team</h2>
+        <div class="team-container">
+            <div class="team-member">
+                <h3>Sruthi Rambhatla</h3>
+            </div>
+            <div class="team-member">
+                <h3>Simma Govardhan Naidu</h3>
+            </div>
+            <div class="team-member">
+                <h3>Satapathi Pavan</h3>
+            </div>
+            <div class="team-member">
+                <h3>Setti Lohith Kumar</h3>
+            </div>
+            <div class="team-member">
+                <h3>Shaik Altaf</h3>
+            </div>
+            <div class="team-member">
+                <h3>Guide: Dr. L. Venkat</h3>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <p>Contact us for more information: <a href="mailto:farmingforbetterfuture@gmail.com">farmingforbetterfuture@gmail.com</a></p>
+        <p>&copy; 2024 Farming For A Better Future. All Rights Reserved.</p>
     </footer>
 </body>
 </html>
